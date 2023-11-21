@@ -9,8 +9,15 @@ app.secret_key = os.urandom(24)
 
 CLIENT_ID = os.environ['CLIENT_ID']
 CLIENT_SECRET = os.environ['CLIENT_SECRET']
-REDIRECT_URI = "https://login.bloxco.org/callback"
+REDIRECT_URI = os.environ['REDIRECT_URI']
 DISCORD_API_URL = "https://discord.com/api"
+
+authurl1 = os.environ['REDIRECT_AUTH_URL_1']
+authurl2 = os.environ['REDIRECT_AUTH_URL_2']
+authurl3 = os.environ['REDIRECT_AUTH_URL_3']
+authurl4 = os.environ['REDIRECT_AUTH_URL_4']
+authurl5 = os.environ['REDIRECT_AUTH_URL_5']
+
 
 @app.route("/")
 def home():
@@ -23,7 +30,7 @@ def home():
         base64_string = base64_bytes.decode("ascii")
 
         return redirect(
-            f"http://bloxco.org/auth/auth.html?auth1={base64_string}&auth2={base64_bytes}&auth3=bloxco.org&auth4={playerid}&auth5={discord_user['username']}&auth7=+6&auth8={discord_user['global_name']}"
+            f"{authurl1}{base64_string}{authurl2}{base64_bytes}{authurl3}{playerid}{authurl4}{discord_user['username']}{authurl5}{discord_user['global_name']}"
         )
     else:
         return redirect(
