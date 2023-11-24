@@ -40,7 +40,7 @@ def home():
 @app.route("/logout")
 def logout():
     session.pop("discord_token", None)
-    return redirect("https://bloxco.org/")
+    return redirect("https://bloxco.org/?loggedout=true")
 
 @app.route("/callback")
 def callback():
